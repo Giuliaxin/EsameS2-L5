@@ -216,10 +216,15 @@ body {
     margin-bottom: 5px;
 }
 
+.star-rating span {
+    color: #007185;
+}
+
 .price-tag {
     font-size: 1.3rem;
     font-weight: bold;
     margin-bottom: 12px;
+    color: #B12704;
 }
 
 .add-to-cart {
