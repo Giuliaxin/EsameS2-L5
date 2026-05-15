@@ -26,12 +26,15 @@ const verificaStockERating = (elenco) => {
 };
 
 const creaGestoreCarrello = () => {
-  let conteggio = 0;
+  let conteggio = parseInt(localStorage.getItem("carrello_qty")) || 0;
   const elementoCarrello = document.querySelector('.cart-indicator');
+  
+  elementoCarrello.innerText = `Carrello (${conteggio})`;
   
   return () => {
     conteggio++;
     elementoCarrello.innerText = `Carrello (${conteggio})`;
+    localStorage.setItem("carrello_qty", conteggio);
   };
 };
 
@@ -61,5 +64,28 @@ const renderProdotti = (lista) => {
     container.appendChild(card);
   });
 };
+
+const ordinaProdotti = (criterio) => {
+  let prodottiOrdinati = [...catalogoProdotti];
+
+  if (criterio === "price-asc") {
+    prodottiOrdinati.sort((a, b) => a.prezzo - b.prezzo);
+  } else if (criterio === "price-desc") {
+    prodottiOrdinati.sort((a, b) => b.prezzo - a.prezzo);
+  } else if (criterio === "name") {
+    prodottiOrdinati.sort((a, b) => a.nome.localeCompare(b.nome));
+  } else if (criterio === "rating") {
+    prodottiOrdinati.sort((a, b) => b.rating - a.rating);
+  }
+
+  renderProdotti(prodottiOrdinati);
+};
+
+const selectSort = document.getElementById("sort-select");
+if (selectSort) {
+  selectSort.addEventListener("change", (e) => {
+    ordinaProdotti(e.target.value);
+  });
+}
 
 renderProdotti(catalogoProdotti);
