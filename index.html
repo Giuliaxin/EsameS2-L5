@@ -3,67 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Amazon Homepage</title>
+  <title>Amazon Homepage — Week Project</title>
   <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
 
-  <header>
-    <div class="header-content">
-      <span class="logo">AMAZON</span>
+  <header class="top-navigation">
+    <div class="nav-wrapper">
+      <div class="logo-container">
+        <span class="brand-name">amazon</span>
+      </div>
      
-      <div class="search-bar">
-        <input type="search" placeholder="Cerca su Amazon.it">
-        <button type="button" class="btn-search">Cerca</button>
+      <div class="search-container">
+        <input type="search" placeholder="Cerca prodotti, categorie, brand...">
+        <button type="button" class="search-submit">Cerca</button>
       </div>
 
-      <nav>
+      <nav class="user-menu">
         <a href="javascript:void(0)">Account</a>
         <a href="javascript:void(0)">Ordini</a>
-        <a href="javascript:void(0)" class="carrello">Carrello (0)</a>
+        <a href="javascript:void(0)" class="cart-indicator">Carrello (0)</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <section class="hero">
+    <section class="promo-banner">
       <h1>Le offerte di oggi</h1>
-      <p>Trova i migliori prodotti a prezzi imbattibili.</p>
+      <p>Sconti fino al 70% su elettronica, libri, casa e molto altro</p>
     </section>
 
-    <section class="categorie">
-      <article class="card">
-        <img src="https://placehold.co/300x200?text=Elettronica" alt="Elettronica">
-        <h3>Elettronica</h3>
-        <a href="javascript:void(0)">Scopri di più</a>
+    <h2 class="section-label">Categorie</h2>
+    <section class="category-hub">
+      <article class="category-item">
+        <div class="category-visual">Elettronica</div>
+        <div class="category-info">
+          <h3>Elettronica</h3>
+          <a href="javascript:void(0)">Scopri di più</a>
+        </div>
       </article>
 
-      <article class="card">
-        <img src="https://placehold.co/300x200?text=Libri" alt="Libri">
-        <h3>Libri</h3>
-        <a href="javascript:void(0)">Scopri di più</a>
+      <article class="category-item">
+        <div class="category-visual">Libri</div>
+        <div class="category-info">
+          <h3>Libri</h3>
+          <a href="javascript:void(0)">Scopri di più</a>
+        </div>
       </article>
 
-      <article class="card">
-        <img src="https://placehold.co/300x200?text=Abbigliamento" alt="Abbigliamento">
-        <h3>Abbigliamento</h3>
-        <a href="javascript:void(0)">Scopri di più</a>
+      <article class="category-item">
+        <div class="category-visual">Abbigliamento</div>
+        <div class="category-info">
+          <h3>Abbigliamento</h3>
+          <a href="javascript:void(0)">Scopri di più</a>
+        </div>
       </article>
 
-      <article class="card">
-        <img src="https://placehold.co/300x200?text=Casa" alt="Casa">
-        <h3>Casa</h3>
-        <a href="javascript:void(0)">Scopri di più</a>
+      <article class="category-item">
+        <div class="category-visual">Casa</div>
+        <div class="category-info">
+          <h3>Casa</h3>
+          <a href="javascript:void(0)">Scopri di più</a>
+        </div>
       </article>
     </section>
 
-    <section id="prodotti" class="griglia">
+    <h2 class="section-label">I più venduti</h2>
+
+    <section id="prodotti" class="product-showcase">
       </section>
   </main>
 
-  <footer>
-    <div class="footer-columns">
-      <div class="colonna">
+  <footer class="site-footer">
+    <div class="footer-main-grid">
+      <div class="footer-group">
         <h4>Chi siamo</h4>
         <ul>
           <li><a href="javascript:void(0)">Opportunità di lavoro</a></li>
@@ -72,7 +85,7 @@
         </ul>
       </div>
 
-      <div class="colonna">
+      <div class="footer-group">
         <h4>Aiuto</h4>
         <ul>
           <li><a href="javascript:void(0)">I miei ordini</a></li>
@@ -81,7 +94,7 @@
         </ul>
       </div>
 
-      <div class="colonna">
+      <div class="footer-group">
         <h4>Connettiti con noi</h4>
         <ul>
           <li><a href="javascript:void(0)">Facebook</a></li>
