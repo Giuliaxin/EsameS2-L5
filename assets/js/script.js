@@ -51,7 +51,7 @@ const aggiornaUIREpilogo = () => {
 
 const creaGestoreCarrello = () => {
   let conteggio = parseInt(localStorage.getItem("carrello_qty")) || 0;
-  const elementoCarrello = document.querySelector('.cart-indicator');
+  const elementoCarrello = document.querySelector('.carrello-box');
   
   if (elementoCarrello) elementoCarrello.innerText = `Carrello (${conteggio})`;
   aggiornaUIREpilogo();
@@ -72,7 +72,7 @@ const creaGestoreCarrello = () => {
 const aggiungiAlCarrello = creaGestoreCarrello();
 
 const renderProdotti = (lista) => {
-  const container = document.querySelector(".product-showcase");
+  const container = document.getElementById("prodotti"); 
   if (!container) return;
   container.innerHTML = "";
 
@@ -85,13 +85,15 @@ const renderProdotti = (lista) => {
       <h3>${prodotto.nome}</h3>
       <div class="star-rating">${generaStelle(prodotto.rating)} <span>(${prodotto.rating}.0)</span></div>
       <p class="price-tag">${convertiPrezzo(prodotto.prezzo)}</p>
-      <button type="button" class="add-to-cart">
-        Aggiungi al carrello
+      <button type="button" class="add-to-cart" ${!prodotto.disponibile ? 'disabled' : ''}>
+        ${prodotto.disponibile ? 'Aggiungi al carrello' : 'Esaurito'}
       </button>
     `;
 
     const btn = card.querySelector('.add-to-cart');
-    btn.addEventListener('click', () => aggiungiAlCarrello(prodotto));
+    if (prodotto.disponibile) {
+        btn.addEventListener('click', () => aggiungiAlCarrello(prodotto));
+    }
 
     container.appendChild(card);
   });
@@ -120,12 +122,31 @@ if (selectSort) {
   });
 }
 
-const bottoneSvuotaCarrello = document.getElementById("btn-svuota");
-if (bottoneSvuotaCarrello) {
-  bottoneSvuotaCarrello.addEventListener("click", () => {
+const btnSvuotaCarrello = document.getElementById("btn-svuota");
+if (btnSvuotaCarrello) {
+  btnSvuotaCarrello.addEventListener("click", () => {
     localStorage.clear();
     location.reload();
   });
 }
+
+const filtraPerCategoria = (lista, categoria) => {
+  return lista.filter(prodotto => prodotto.categoria === categoria);
+};
+
+const linksCategorie = document.querySelectorAll('.category-item');
+linksCategorie.forEach((card) => {
+  card.addEventListener('click', () => {
+    const nomeCategoria = card.querySelector('h3').innerText;
+    const prodottiFiltrati = filtraPerCategoria(catalogoProdotti, nomeCategoria);
+    
+    const titoloSezione = document.querySelector('.section-label');
+    if (titoloSezione) {
+      titoloSezione.innerText = `Risultati per: ${nomeCategoria}`;
+    }
+    
+    renderProdotti(prodottiFiltrati);
+  });
+});
 
 renderProdotti(catalogoProdotti);
